@@ -3,7 +3,7 @@ using UnityEngine;
 // using UnityEngine.Splines;
 namespace Emptybraces
 {
-	public class SplineAnimateOnReached1 : MonoBehaviour
+	public class SplineAnimateReachedEvent : MonoBehaviour
 	{
 		// public UnityEvent<SplineContainer, BezierKnot, int> OnReachedKnot;
 		// SplineAnimate _anim;

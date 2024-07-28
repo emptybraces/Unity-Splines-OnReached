@@ -48,27 +48,8 @@ namespace Emptybraces.Splines
 
 		public void OnReachedKnot(SplineContainer container, BezierKnot knot, int knotIdx)
 		{
-			// Debug.Log($"OnReachedKnot: {knotIdx}");
-			// StartCoroutine(_Animate(_pinParent.GetChild(knotIdx), knotIdx));
+			Debug.Log($"SplineContainer: {container}, OnReachedKnot: {knotIdx}");
 			GizmoHelper.DrawSphere(container.transform.TransformPoint(knot.Position), 1, Color.red, .5f);
-		}
-
-		IEnumerator _Animate(Transform pin, int idx)
-		{
-			GizmoHelper.DrawSphere(pin.position, 1, Color.red, .5f);
-			// var st = Time.time;
-			// var et = Time.time + .3f;
-			// var p = pin.position;
-			// while (Time.time <= et)
-			// {
-			// 	var t = Mathf.InverseLerp(st, et, Time.time);
-			// 	t = Mathf.Sin(t * Mathf.PI);
-			// 	// t = Mathf.PingPong(t * 2, 1);
-			// 	pin.position = Vector3.Lerp(p, p + Vector3.up * 3, t);
-			// 	yield return null;
-			// }
-			// pin.position = p;
-			yield break;
 		}
 	}
 }

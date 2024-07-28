@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Splines;
-namespace Emptybraces
+
+namespace Emptybraces.Splines
 {
 	[RequireComponent(typeof(SplineAnimate))]
 	public class SplineAnimateOnReached : MonoBehaviour

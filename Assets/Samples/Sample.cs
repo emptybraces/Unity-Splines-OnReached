@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
-namespace Emptybraces
+namespace Emptybraces.Splines
 {
 	public class Sample : MonoBehaviour
 	{

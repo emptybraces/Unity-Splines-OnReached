@@ -13,7 +13,7 @@ namespace Emptybraces
 		bool _isPlaying;
 		bool _isReverse;
 		float _prevT;
-		Spline LastSpline => _anim.Container.Splines[^1];
+		// Spline LastSpline => _anim.Container.Splines[^1];
 		bool IsPingPongReverse => _anim.Loop == SplineAnimate.LoopMode.PingPong && _isReverse;
 
 		void Awake()
@@ -64,7 +64,6 @@ namespace Emptybraces
 						knot_idx = (knot_idx + 1) % _splinePath.Count;
 				}
 			}
-
 
 			if (!_anim.IsPlaying)
 			{

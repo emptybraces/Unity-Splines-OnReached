@@ -9,6 +9,7 @@ namespace Emptybraces.Splines
 	{
 		public UnityEvent<SplineContainer, BezierKnot, int> OnReachedKnot;
 		SplineAnimate _anim;
+		SplineContainer _containerLast;
 		int _knotIdxCur, _knotIdxPrev;
 		SplinePath<Spline> _splinePath;
 		bool _isPlaying;
@@ -95,6 +96,12 @@ namespace Emptybraces.Splines
 				if (_anim.Container.Splines.Count == 0)
 					return false;
 				_splinePath = new SplinePath<Spline>(_anim.Container.Splines);
+				_containerLast = _anim.Container;
+			}
+			else if (_anim.Container != _containerLast)
+			{
+				_splinePath = new SplinePath<Spline>(_anim.Container.Splines);
+				_containerLast = _anim.Container;
 			}
 			return _splinePath != null;
 		}

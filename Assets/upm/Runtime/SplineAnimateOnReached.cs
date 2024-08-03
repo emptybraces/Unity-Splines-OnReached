@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.Splines;
 
@@ -15,7 +16,6 @@ namespace Emptybraces.Splines
 		bool _isPlaying;
 		bool _isReverse;
 		float _prevT;
-		// Spline LastSpline => _anim.Container.Splines[^1];
 		bool IsPingPongReverse => _anim.Loop == SplineAnimate.LoopMode.PingPong && _isReverse;
 
 		void Awake()
@@ -55,7 +55,9 @@ namespace Emptybraces.Splines
 						knot_idx = _knotIdxPrev - 1;
 				}
 				// Debug.Log($"[SplineAnimateOnReached] _knotIdxPrev:{_knotIdxPrev}, _knotIdxCur:{_knotIdxCur}, ntime:{_anim.NormalizedTime}");
-				while (true)
+				const int ERR = 10000; // 念のため
+				int i = 0;
+				for (; i < ERR; ++i)
 				{
 					_Invoke(knot_idx);
 					if (_knotIdxCur == knot_idx)
@@ -65,6 +67,7 @@ namespace Emptybraces.Splines
 					else
 						knot_idx = (knot_idx + 1) % _splinePath.Count;
 				}
+				Assert.IsFalse(i == ERR, "something wrong");
 			}
 
 			if (!_anim.IsPlaying)

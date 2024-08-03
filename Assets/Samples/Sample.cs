@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -9,7 +8,6 @@ namespace Emptybraces.Splines
 		SplineContainer _container;
 		SplineAnimate _splineAnimate;
 		MeshFilter _mesh;
-		Transform _pinParent;
 		void Awake()
 		{
 			_container = GetComponentInChildren<SplineContainer>();
@@ -17,7 +15,6 @@ namespace Emptybraces.Splines
 			_mesh = _splineAnimate.GetComponentInChildren<MeshFilter>();
 			GetComponentInChildren<TextMesh>().text = (1 < _container.Splines.Count ? "multi, " : "single, ") + _splineAnimate.Loop.ToString();
 			var pin_prefab = transform.GetChild(transform.childCount - 1).GetChild(0);
-			_pinParent = pin_prefab.parent;
 			GetComponentInChildren<SplineAnimateOnReached>().OnReachedKnot.AddListener(OnReachedKnot);
 			for (int i = 0, cnt = 1; i < _container.Splines.Count; ++i)
 			{
@@ -25,7 +22,7 @@ namespace Emptybraces.Splines
 				{
 					var pin = Instantiate(pin_prefab, pin_prefab.parent);
 					pin.name += cnt.ToString();
-					pin.position = _container.transform.TransformPoint(_container.Splines[i].Knots.ElementAt(j).Position);
+					pin.position = _container.transform.TransformPoint(_container.Splines[i][j].Position);
 				}
 			}
 			Destroy(pin_prefab.gameObject);
